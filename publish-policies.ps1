@@ -36,12 +36,21 @@ $policies = @(
 
 $drifted = @()
 
+# The source files open with a PAIRED DOCUMENT comment addressed to whoever is
+# editing them. It names local Windows paths and internal class names, so it is
+# stripped on the way out -- it is a note to us, not to the public.
+function Get-PublishableText([string]$path) {
+    $raw = Get-Content $path -Raw
+    return [regex]::Replace($raw, '(?s)<!--\s*={3,}.*?PAIRED DOCUMENT.*?-->\r?\n?', '')
+}
+
 foreach ($p in $policies) {
     if (-not (Test-Path $p.Source)) {
         Write-Host "?? $($p.Name): source missing at $($p.Source)" -ForegroundColor Yellow
         continue
     }
-    $same = (Get-FileHash $p.Source).Hash -eq (Get-FileHash $p.Published).Hash
+    $p.Text = Get-PublishableText $p.Source
+    $same = $p.Text -eq (Get-Content $p.Published -Raw)
     if ($same) {
         Write-Host "ok   $($p.Name): published copy matches the repo" -ForegroundColor Green
     } else {
@@ -58,14 +67,32 @@ if ($drifted.Count -eq 0) {
     exit 0
 }
 
+# The pairing check. Spirit and MASH describe the SAME cross-app behaviour --
+# the companion exchange, the assistance lookup, the DV handoff into Spirit's
+# confidential screen, and the crisis scan that is mirrored by hand into three
+# files across the two apps. A change to any of those makes both policies wrong
+# at once, so a lone edit is the shape of a half-finished job, not a small one.
+if ($drifted.Count -eq 1) {
+    $other = $policies | Where-Object { $_.Name -ne $drifted[0].Name }
+    Write-Host ""
+    Write-Host "PAIRED-DOCUMENT CHECK: only $($drifted[0].Name)'s policy changed." -ForegroundColor Yellow
+    Write-Host "  These two describe shared behaviour: the companion exchange, the"
+    Write-Host "  assistance lookup, the domestic-violence handoff, and the crisis scan."
+    Write-Host "  Re-read the other one before publishing:"
+    Write-Host "    $($other.Source)"
+    Write-Host "  If it needs the same change, make it NOW rather than shipping a"
+    Write-Host "  half-updated pair." -ForegroundColor Yellow
+}
+
 if (-not $Publish) {
     Write-Host "`n$($drifted.Count) policy/policies out of date. Re-run with -Publish to fix." -ForegroundColor Yellow
     exit 1
 }
 
 foreach ($p in $drifted) {
-    Copy-Item $p.Source $p.Published -Force
-    Write-Host "copied $($p.Name)" -ForegroundColor Cyan
+    # Write the stripped text, not a straight copy — see Get-PublishableText.
+    Set-Content -Path $p.Published -Value $p.Text -NoNewline -Encoding utf8
+    Write-Host "published $($p.Name)" -ForegroundColor Cyan
 }
 
 Push-Location $SiteRoot

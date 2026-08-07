@@ -14,7 +14,7 @@
 </head>
 <body>
 <h1>Privacy Policy — MASH</h1>
-<p class="updated">Last updated: 5 August 2026 &middot; Kentucky Bootleggers Software Inc. &middot;
+<p class="updated">Last updated: 7 August 2026 &middot; Kentucky Bootleggers Software Inc. &middot;
    Contact: <a href="mailto:Paulie.n.SD@protonmail.com">Paulie.n.SD@protonmail.com</a></p>
 
 <p>MASH (Modular Adaptive Self-healing Host) is an on-device AI companion from
@@ -43,24 +43,38 @@ us:</p>
       language-model file (about 770 MB). If you installed MASH from Google
       Play, that file arrives through Google Play's own app-delivery system,
       like the rest of the app. Installed another way, MASH offers to download
-      it once from a public model host (Hugging Face) and verifies the file
-      against a known fingerprint before using it. Either way the transfer
+      it once from a public model host (Hugging Face) and checks the finished
+      file against a fingerprint built into the app before using it. (If you
+      are an advanced user and point MASH at a download address of your own,
+      there is no fingerprint to check it against, and MASH cannot vouch for
+      what arrives.) Either way the transfer
       brings data <em>to</em> your phone and sends no information about you —
       though, as with any download, the host serving the file sees an ordinary
       web request from your internet address. You can decline and use the app
       without the AI.</li>
-  <li><strong>Optional web search.</strong> MASH can fetch fresh information to
-      help answer a question, but this is <strong>off by default</strong>. It
-      only makes web requests if you explicitly turn on a networked search mode
-      in the app's configuration. When enabled, your search terms are sent to
-      the search service you selected (for example your own private search
-      instance, or a public engine) — never to us.</li>
+  <li><strong>Optional web search.</strong> MASH can look something up to help
+      answer a question, but this is <strong>off by default</strong>. It makes
+      no web requests at all unless you turn it on. When you do, it uses two
+      free public sources and nothing else:
+      <ul>
+        <li><strong>Wikipedia.</strong> The search terms MASH draws from your
+            question are sent to Wikipedia's public search API at
+            <code>en.wikipedia.org</code>.</li>
+        <li><strong>Public news feeds from the BBC and NPR.</strong> MASH
+            downloads the feed and searches it <em>on your phone</em>, so these
+            two see an ordinary web request from your internet address but
+            never receive your search terms.</li>
+      </ul>
+      There is no search account, no API key and no search company involved,
+      and nothing goes to us.</li>
 </ul>
 
 <h2>Working with the Kentucky Spiritual Guide app</h2>
 <p>If you also install the Kentucky Spiritual Guide, it can ask your MASH
 companion to reflect on what you're reading. That exchange happens locally
-between the two apps on the same device and does not leave your phone. It also works the other way now. If what you say suggests you need practical
+between the two apps on the same device and does not leave your phone.</p>
+
+<p>It also works the other way. If what you say suggests you need practical
 help &mdash; food, a place to sleep, help with a bill, a recovery meeting &mdash;
 MASH looks for that in the words you type, on your phone, with no AI involved and
 nothing sent anywhere. When it finds it, MASH offers to look up local services,
@@ -69,15 +83,32 @@ location you set in <em>that</em> app. MASH never asks for location permission
 itself and makes no network request to do this. If you do not have the Kentucky
 Spiritual Guide installed, MASH tells you so and points you to 211.</p>
 
-<p>There is one exception, and it is deliberate. If what you type suggests you are
-trying to get away from someone who is hurting you, MASH does not send that
-message to the AI, does not save it to your conversation, and does not remember
-it &mdash; the message is gone. It opens the Kentucky Spiritual Guide directly on
-its confidential-help screen, which lists hotline numbers, cannot be
-screenshotted, and whose Back button goes to the Bible section rather than to
-MASH. MASH removes itself from your recent-apps list as it goes. What stays on the
-phone afterwards is a single timestamp, so that repeating the same words within
-fifteen minutes is treated as ordinary conversation instead of doing this again.</p>
+<p>There is one exception, and it is deliberate. <strong>The first time</strong>
+what you type suggests you are trying to get away from someone who is hurting
+you, MASH does not send that message to the AI, does not save it to your
+conversation, and does not remember it &mdash; that message is gone. It opens the
+Kentucky Spiritual Guide directly on its confidential-help screen, which lists
+hotline numbers, cannot be screenshotted, and whose Back button goes to the Bible
+section rather than to MASH. MASH removes itself from your recent-apps list as it
+goes. The only thing left behind on the phone is a single timestamp.</p>
+
+<p>That timestamp is why the same words do nothing for the next fifteen minutes.
+Inside that window MASH answers them as ordinary conversation: the message does
+go to the on-device AI and does stay in your conversation, like any other message
+&mdash; though it is still never written to what the companion remembers about
+you. That is the point of it. If someone else has your phone and is testing it
+with your own words, the app must not perform that rescue a second time and give
+you away.</p>
+
+<h2>Checking your words for a crisis</h2>
+<p>Every message you send is also checked against a fixed list of words and
+phrases that suggest you may be in danger from yourself. This happens
+<strong>on your phone</strong>: it is a plain comparison against that list, not
+the AI's judgment, nothing is sent anywhere, and no record of the check is kept.
+If it matches, MASH shows a card offering the 988 Suicide &amp; Crisis Lifeline
+and other ways to reach a person &mdash; <em>beside</em> your conversation, never
+in place of it. Your message is answered normally either way, and nothing about
+it is written to what the companion remembers about you.</p>
 
 <h2>The MASH Keyboard</h2>
 <p>MASH includes an optional on-screen keyboard. If you enable it, everything

@@ -302,8 +302,9 @@
       <tbody>
         <tr><td><span class="label">My Location</span></td>
           <td>Uses GPS to find where you are. The first time, it shows a short notice
-            (<em>“Use your location?”</em>) explaining that your location is sent to OpenStreetMap only to search for
-            nearby places — tap <span class="label">Allow</span> to continue, or <span class="label">Not now</span> to
+            (<em>“Use your location?”</em>) explaining that your location is sent to Google, to look up your town, and
+            to OpenStreetMap, to search for nearby places — tap <span class="label">Allow</span> to continue, or
+            <span class="label">Not now</span> to
             back out. You’ll see status like <em>“Connecting to GPS…”</em> then <em>“Location: {city}, {state}.”</em>
             (More on this in Part&nbsp;10.)</td></tr>
         <tr><td><span class="label">Zip Code</span></td>
@@ -401,7 +402,7 @@
     <div class="tablewrap"><table>
       <thead><tr><th>Button</th><th>Where it leads</th></tr></thead>
       <tbody>
-        <tr><td><span class="label">Recovery Groups</span></td><td>The <strong>12-Step Resources</strong> screen — AA, NA, a “12 Steps for Everyone” guide, and your Recovery Contacts (detailed below).</td></tr>
+        <tr><td><span class="label">Recovery Groups</span></td><td>The <strong>12-Step Resources</strong> screen — AA, NA, a “Kentuckian 12 Steps” guide, and your Recovery Contacts (detailed below).</td></tr>
         <tr><td><span class="label">Recovery Meetings</span></td><td><strong>Find a meeting</strong> — AA and Al-Anon meeting finders, plus an <em>offline</em> NA area directory (your region opens first).</td></tr>
         <tr><td><span class="label">Daily Readings</span></td><td>The same <strong>Recovery Readings</strong> list as the home-screen button (Part&nbsp;5).</td></tr>
         <tr><td><span class="label">Recovery Books</span></td><td>The AA Big Book (incl. an <strong>offline</strong> 1939 &amp; 1955 edition), the 12&amp;12, and the NA White Book.</td></tr>
@@ -414,7 +415,7 @@
     <ul>
       <li><strong>Alcoholics Anonymous (AA)</strong> — official site, meeting finder, and <span class="label">AA Meeting Readings</span>: a generic meeting guide, the Preamble, the complete Serenity Prayer, the Promises, How It Works, the Traditions, and the <strong>offline 1939 &amp; 1955 Big Book</strong>.</li>
       <li><strong>Narcotics Anonymous (NA)</strong> — official site, meeting finder, and a full set of NA meeting readings (Who Is an Addict?, How It Works, the Traditions, Just for Today, and more), plus the 3rd Step Prayer.</li>
-      <li><strong>12 Steps for Everyone</strong> — Paul D. Bevins’ own plain-language walk through all twelve steps, each with its principle, meaning, practice points, and a reflection question.</li>
+      <li><strong>Kentuckian 12 Steps</strong> — Paul D. Bevins’ own plain-language walk through all twelve steps, each with its principle, meaning, practice points, and a reflection question.</li>
       <li><strong>Recovery Contacts</strong> — your call-first list. As the screen puts it: <em>“When you’re tempted to use — or to do something worse — reach out to someone here BEFORE you act.”</em> Add sponsors, your home group, crisis lines, sober friends; tap a number to call.</li>
     </ul>
   </section>
@@ -460,20 +461,22 @@
     <p>When you tap <span class="label">My Location</span>, the app uses your phone’s GPS to get a precise position.
     Here’s the whole story, plainly.</p>
     <ul>
-      <li><strong>What it’s used for:</strong> (1) turning your position into a city and state to show you; (2) sorting
-        and filtering nearby churches and resources by distance <em>on your phone</em>; and (3) asking OpenStreetMap’s
-        public map for places near you.</li>
-      <li><strong>What actually leaves your phone:</strong> only the latitude and longitude, inside the map search. No
-        name, no account, nothing that identifies you rides along with it.</li>
+      <li><strong>What it’s used for:</strong> (1) turning your position into a city and state to show you, which Google
+        looks up; (2) sorting and filtering nearby churches and resources by distance <em>on your phone</em>; and (3)
+        asking OpenStreetMap’s public map for places near you. Once your town is saved, the Weather button uses it to
+        open that town’s forecast from the National Weather Service.</li>
+      <li><strong>What actually leaves your phone:</strong> the latitude and longitude, to Google to look up your town,
+        and to OpenStreetMap inside the map search. The app adds no name and no account of its own to either; Google
+        and OpenStreetMap handle what they receive under their own privacy policies.</li>
       <li><strong>You’re always asked first.</strong> The location notice appears <em>after</em> you tap
         <span class="label">My Location</span> and <em>before</em> Android’s permission prompt. Its exact words:</li>
     </ul>
     <div class="call safe"><span class="k">The location notice, word for word</span>
-      <p><em>“To find churches and services near you, this app sends your location to OpenStreetMap’s Overpass servers
-      to search for places nearby. Your location is used only for that search — never stored off your phone or tied to
-      you.”</em></p></div>
+      <p><em>“To find churches and services near you, this app sends your location to Google, to look up your town, and
+      to OpenStreetMap’s Overpass servers, to search for places nearby.”</em></p></div>
     <p>If you’d rather not use GPS at all, use <span class="label">Zip Code</span> or <span class="label">Select
-    State</span> instead — both find places without any location access.</p>
+    State</span> instead — both find places without any location access. A ZIP code is looked up with Google the same
+    way, to find where it is.</p>
   </section>
 
   <!-- PART 11 -->
@@ -491,7 +494,7 @@
       <tbody>
         <tr><td><strong>Holds</strong></td><td>Your journal, personal profile, prayers, bookmarks, recovery contacts, saved resources, emergency info.</td><td>Your <em>conversations</em> with the companion, and the facts it remembers, kept per companion.</td></tr>
         <tr><td><strong>Where</strong></td><td>Local databases on your phone.</td><td>An <em>encrypted</em> local database on your phone.</td></tr>
-        <tr><td><strong>Leaves the device?</strong></td><td>No (only map coordinates for a nearby search — Part&nbsp;10).</td><td>No — conversations never leave the device.</td></tr>
+        <tr><td><strong>Leaves the device?</strong></td><td>Only for features you use: your location or ZIP code, to Google and OpenStreetMap, for a nearby search (Part&nbsp;10); the Weather button’s town, to the National Weather Service; usage reports from Google ML Kit, the text reader behind Scan a Page; and a companion’s answer you choose to report, from your own email app.</td><td>Not unless you want it to: web search (off by default) sends search terms to Wikipedia, and an answer you choose to report goes from your own email app.</td></tr>
       </tbody>
     </table></div>
 
